@@ -2,26 +2,91 @@
   "name": "aie-nextjs-electron-template",
   "version": "0.1.0",
   "private": true,
+  "main": "build/main.js",
+  "build": {
+    "asar": true,
+    "executableName": "AIE NextJS Electron",
+    "appId": "gold.aie.nextjs-electron-template",
+
+    "files": [
+      "build",
+      {
+        "from": ".next/standalone",
+        "to": "app",
+        "filter": [
+          "!**/.env",
+          "!**/package.json"
+        ]
+      },
+      {
+        "from": ".next/static",
+        "to": "app/.next/static"
+      },
+      {
+        "from": "public",
+        "to": "app/public"
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "linux": {
+      "target": [
+        "deb"
+      ],
+      "category": "Development"
+    }
+  },
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "next:dev": "next dev --turbopack",
+    "next:build": "next build",
+    "next:start": "next start",
+    "next:lint": "next lint",
+    "format": "dprint fmt",
+    "postinstall": "electron-builder install-app-deps",
+    "electron:build_watch": "tsup --watch",
+    "electron:watch": "cross-env NODE_ENV='development' nodemon",
+    "electron:dev": "run-p electron:build_watch electron:watch",
+    "electron:build": "tsup",
+    "electron:dist": "electron-builder --dir",
+    "electron:dist:nsis": "electron-builder --windows nsis",
+    "electron:dist:deb": "electron-builder --linux deb",
+    "dev": "run-p next:dev electron:dev",
+    "build": "run-s next:build electron:build",
+    "dist": "run-s build electron:dist",
+    "dist:nsis": "run-s build electron:dist:nsis",
+    "dist:deb": "run-s build electron:dist:deb"
   },
   "dependencies": {
+    "@electron-toolkit/utils": "^4.0.0",
+    "get-port-please": "^3.1.2",
+    "next": "15.3.5",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.3.5"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
+    "cross-env": "^7.0.3",
+    "electron": "^37.2.1",
+    "electron-builder": "^26.0.12",
     "eslint": "^9",
     "eslint-config-next": "15.3.5",
-    "@eslint/eslintrc": "^3"
+    "nodemon": "^3.1.10",
+    "npm-run-all": "^4.1.5",
+    "tailwindcss": "^4",
+    "tsup": "^8.5.0",
+    "typescript": "^5"
+  },
+  "packageManager": "pnpm@10.7.1",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "electron"
+    ]
   }
 }
