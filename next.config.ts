@@ -8,6 +8,9 @@ const nextConfig: NextConfig = {
       .join(process.cwd(), "src/styles/_mantine")
       .replace(/\\/g, "/")}" as mantine;`,
   },
+  compiler: {
+    emotion: true,
+  },
   turbopack: {
     rules: {
       "*.svg": {

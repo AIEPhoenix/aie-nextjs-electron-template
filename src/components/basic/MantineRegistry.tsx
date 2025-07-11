@@ -7,6 +7,8 @@ import {
   createShikiAdapter,
 } from "@mantine/code-highlight";
 import { bundledLanguages, createHighlighter } from "shiki";
+import { emotionTransform, MantineEmotionProvider } from "@mantine/emotion";
+import { RootStyleRegistry } from "./EmotionRootStyleRegistry";
 
 async function loadShiki() {
   const shiki = await createHighlighter({
@@ -21,12 +23,16 @@ const shikiAdapter = createShikiAdapter(loadShiki);
 
 function MantineRegistry({ children }: { children: React.ReactNode }) {
   return (
-    <MantineProvider>
-      <CodeHighlightAdapterProvider adapter={shikiAdapter}>
-        <Notifications />
-        <ModalsProvider>{children}</ModalsProvider>
-      </CodeHighlightAdapterProvider>
-    </MantineProvider>
+    <RootStyleRegistry>
+      <MantineEmotionProvider>
+        <MantineProvider stylesTransform={emotionTransform}>
+          <CodeHighlightAdapterProvider adapter={shikiAdapter}>
+            <Notifications />
+            <ModalsProvider>{children}</ModalsProvider>
+          </CodeHighlightAdapterProvider>
+        </MantineProvider>
+      </MantineEmotionProvider>
+    </RootStyleRegistry>
   );
 }
 
