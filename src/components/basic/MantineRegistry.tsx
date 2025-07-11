@@ -1,14 +1,11 @@
-"use client";
-import { MantineProvider } from "@mantine/core";
-import { Notifications } from "@mantine/notifications";
-import { ModalsProvider } from "@mantine/modals";
-import {
-  CodeHighlightAdapterProvider,
-  createShikiAdapter,
-} from "@mantine/code-highlight";
-import { bundledLanguages, createHighlighter } from "shiki";
-import { emotionTransform, MantineEmotionProvider } from "@mantine/emotion";
-import { RootStyleRegistry } from "./EmotionRootStyleRegistry";
+'use client';
+import { MantineProvider } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
+import { ModalsProvider } from '@mantine/modals';
+import { CodeHighlightAdapterProvider, createShikiAdapter } from '@mantine/code-highlight';
+import { bundledLanguages, createHighlighter } from 'shiki';
+import { emotionTransform, MantineEmotionProvider } from '@mantine/emotion';
+import { RootStyleRegistry } from './EmotionRootStyleRegistry';
 
 async function loadShiki() {
   const shiki = await createHighlighter({

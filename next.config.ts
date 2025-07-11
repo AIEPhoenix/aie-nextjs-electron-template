@@ -1,36 +1,32 @@
-import type { NextConfig } from "next";
-import path from "node:path";
+import type { NextConfig } from 'next';
+import path from 'node:path';
 
 const nextConfig: NextConfig = {
   sassOptions: {
-    implementation: "sass-embedded",
-    additionalData: `@use "${path
-      .join(process.cwd(), "src/styles/_mantine")
-      .replace(/\\/g, "/")}" as mantine;`,
+    implementation: 'sass-embedded',
+    additionalData: `@use "${path.join(process.cwd(), 'src/styles/_mantine').replace(/\\/g, '/')}" as mantine;`,
   },
   compiler: {
     emotion: true,
   },
   turbopack: {
     rules: {
-      "*.svg": {
+      '*.svg': {
         loaders: [
           {
-            loader: "@svgr/webpack",
+            loader: '@svgr/webpack',
             options: {
               icon: true,
             },
           },
         ],
-        as: "*.js",
+        as: '*.js',
       },
     },
   },
   webpack: (config) => {
     // Grab the existing rule that handles SVG imports
-    const existingSVGRule = config.module.rules.find((rule: any) =>
-      rule.test?.test?.(".svg")
-    );
+    const existingSVGRule = config.module.rules.find((rule: any) => rule.test?.test?.('.svg'));
 
     config.module.rules.push(
       // Reapply the existing rule, but only for svg imports ending in ?url
@@ -46,7 +42,7 @@ const nextConfig: NextConfig = {
         resourceQuery: { not: [...existingSVGRule.resourceQuery.not, /url/] }, // exclude if *.svg?url
         use: [
           {
-            loader: "@svgr/webpack",
+            loader: '@svgr/webpack',
             options: {
               icon: true,
             },
@@ -61,9 +57,9 @@ const nextConfig: NextConfig = {
     return config;
   },
   experimental: {
-    optimizePackageImports: ["@mantine/core", "@mantine/hooks"],
+    optimizePackageImports: ['@mantine/core', '@mantine/hooks'],
   },
-  output: "standalone",
+  output: 'standalone',
 };
 
 export default nextConfig;

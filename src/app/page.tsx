@@ -1,10 +1,10 @@
-"use client";
-import { CodeHighlight } from "@mantine/code-highlight";
-import { Button } from "@mantine/core";
-import Image from "next/image";
-import TestIcon from "@/assets/icon.svg";
-import styles from "./page.module.scss";
-import styled from "@emotion/styled";
+'use client';
+import { CodeHighlight } from '@mantine/code-highlight';
+import { Button } from '@mantine/core';
+import Image from 'next/image';
+import TestIcon from '@/assets/icon.svg';
+import styles from './page.module.scss';
+import styled from '@emotion/styled';
 
 const StyledTestIcon = styled(TestIcon)`
   color: red;
@@ -24,25 +24,16 @@ export default function Home() {
         <div className={styles.title}>test</div>
         <span className="icon-[mdi-light--home]"></span>
         <TestBox />
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
+        <Image className="dark:invert" src="/next.svg" alt="Next.js logo" width={180} height={38} priority />
         <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
           <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
+            Get started by editing{' '}
             <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
               src/app/page.tsx
             </code>
             .
           </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
+          <li className="tracking-[-.01em]">Save and see your changes instantly.</li>
         </ol>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
@@ -53,13 +44,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
+            <Image className="dark:invert" src="/vercel.svg" alt="Vercel logomark" width={20} height={20} />
             Deploy now
           </Button>
           <a
@@ -79,13 +64,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
+          <Image aria-hidden src="/file.svg" alt="File icon" width={16} height={16} />
           Learn
         </a>
         <a
@@ -94,13 +73,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
+          <Image aria-hidden src="/window.svg" alt="Window icon" width={16} height={16} />
           Examples
         </a>
         <CodeHighlight
@@ -139,13 +112,7 @@ export default Blog
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
+          <Image aria-hidden src="/globe.svg" alt="Globe icon" width={16} height={16} />
           Go to nextjs.org →
         </a>
       </footer>
