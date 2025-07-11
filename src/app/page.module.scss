@@ -1,0 +1,20 @@
+// example.module.scss
+.title {
+  // light-dark function is handled by PostCSS
+  color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+  font-size: mantine.rem(100px);
+  font-weight: 900;
+  letter-spacing: mantine.rem(-2px);
+
+  @include mantine.light {
+    background-color: red;
+  }
+
+  @include mantine.dark {
+    background-color: blue;
+  }
+
+  @include mantine.smaller-than(mantine.$mantine-breakpoint-md) {
+    font-size: mantine.rem(50px);
+  }
+}
