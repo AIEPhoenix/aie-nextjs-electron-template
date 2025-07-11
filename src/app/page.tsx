@@ -22,6 +22,7 @@ export default function Home() {
       <StyledTestIcon />
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
         <div className={styles.title}>test</div>
+        <span className="icon-[mdi-light--home]"></span>
         <TestBox />
         <Image
           className="dark:invert"
